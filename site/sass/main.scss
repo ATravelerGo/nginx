@@ -1,0 +1,30 @@
+/*
+Colors:
+    Light green:#7ed56f
+    Medium green:#55c57a
+    Dark green: #28b485
+*/
+@import "abstracts/functions.scss";
+@import "abstracts/mixins.scss";
+@import "abstracts/variables.scss";
+
+@import "base/base.scss";
+@import "base/animation.scss";
+@import "base/typography.scss";
+@import "base/utilities.scss";
+
+@import "pages/home";
+
+@import "components/buttons";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/card";
+@import "components/story";
+@import "components/bg-video";
+@import "components/form";
+@import "components/popup";
+
+@import "layout/header";
+@import "layout/grid";
+@import "layout/footer";
+@import "layout/navigation";

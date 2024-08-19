@@ -1,0 +1,61 @@
+
+name: railway部署
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  cacheNatoursCode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: '拉取代码'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'natours'
+          path: './'
+        name: '做artifact存储'
+
+
+
+  deploy:
+    needs:
+      - cacheNatoursCode
+    runs-on: ubuntu-latest
+
+    steps:
+
+
+      - uses: actions/checkout@v4
+      - run: git clone https://username:${{ secrets.SECRET }}@github.com/ATravelerGo/nginx.git
+      - run: |
+          rm -rf ./*
+          ls
+        working-directory: nginx/site
+
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: 'natours'
+          path: 'nginx/site'
+        name: '获取artifact'
+      - run: ls
+        name: '查看路径'
+        working-directory: nginx/site
+  
+      - run: |
+          git config --global user.email "xiaokeai1833103@gmail.com"
+          git config --global user.name "chen"
+          git add .
+          git commit -m "开始部署喽"
+          git push
+        working-directory: nginx
+        name: "提交代码"
+  
+         
+       
+
+
+        
